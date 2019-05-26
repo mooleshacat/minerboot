@@ -20,26 +20,21 @@
 #
 #
 
-# Make sure only root can run our script
-if [[ $EUID -ne 0 ]]; then
-   echo "This script must be run as root" 1>&2
-   exit 1
-fi
+echo $(timestamp) "Updating system, please wait..."
+UPDATERES=$(apt update 2>&1)
+REMOVERES=$(apt autoremove -y 2>&1)
+UPGRADERES=$(apt upgrade -y 2>&1 ; apt full-upgrade -y 2>&1 ;)
+REMOVERES=$(echo ${REMOVERES} ; apt autoremove -y 2>&1)
 
-# Load our functions
-source inc/functions.sh
-
-# Run our setup script
-source inc/setup.sh
-
-# Run the miner(s)
-source miners
+#   CHECK IF NVIDIA DRIVER WAS UPDATED AND REBOOT
+echo $(timestamp) "Checking NVIDIA updates..."
+NUMNVIDIACHGS=$(echo ${UPGRADERES} | grep "nvidia" | wc -l)
+echo $(timestamp) "Counted ${NUMNVIDIACHGS} changes to NVIDIA packages"
 
 
+echo $(timestamp) "Enabling NVIDIA Persistance Mode..."
+nvidia-smi -pm 1
 
-
-
-
-
-
-
+echo $(timestamp) "Counting GPU's..."
+NUMGPUS=$(nvidia-smi -L | grep "UUID:" | wc -l)
+echo $(timestamp) "Counted ${NUMGPUS} GPU's"
