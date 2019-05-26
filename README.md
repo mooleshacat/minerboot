@@ -1,7 +1,7 @@
 # MinerBoot v0.1a
 #### A boot script for your NVIDIA cryptocurrency miners
 ----
-###MinerBoot Features:
+### MinerBoot Features:
 
 - Updates system / NVIDIA apt packages
 - Reboots if driver update is detected
