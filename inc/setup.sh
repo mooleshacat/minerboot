@@ -33,6 +33,9 @@ NUMNVIDIACHGS=$(echo ${UPGRADERES} | grep "nvidia" | wc -l)
 
 if [ $NUMNVIDIACHGS -gt 0 ] ; then
     echo $(timestamp) "Counted ${NUMNVIDIACHGS} changes to NVIDIA packages"
+    echo $(timestamp) "FORCING REBOOT IN 5 SECONDS"
+    sleep 5
+    /sbin/reboot
 else
     echo $(timestamp) "No changes to NVIDIA packages"
 fi
@@ -43,3 +46,9 @@ nvidia-smi -pm 1
 echo $(timestamp) "Counting GPU's..."
 NUMGPUS=$(nvidia-smi -L | grep "UUID:" | wc -l)
 echo $(timestamp) "Counted ${NUMGPUS} GPU's"
+
+
+
+
+
+

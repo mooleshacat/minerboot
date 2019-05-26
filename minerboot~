@@ -29,7 +29,7 @@ fi
 # Load our functions
 source inc/functions.sh
 
-echo $(timestamp) "MinerBoot v0.1a Started"
+echo $(timestamp) "MinerBoot v0.1a Started!"
 
 # Run our setup script
 source inc/setup.sh
@@ -37,6 +37,7 @@ source inc/setup.sh
 # Run the miner(s)
 source miners
 
+echo $(timestamp) "MinerBoot v0.1a Finished!"
 
 
 

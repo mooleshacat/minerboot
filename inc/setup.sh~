@@ -30,10 +30,12 @@ REMOVERES=$(echo ${REMOVERES} ; apt autoremove -y 2>&1)
 #   CHECK IF NVIDIA DRIVER WAS UPDATED AND REBOOT
 echo $(timestamp) "Checking NVIDIA updates..."
 NUMNVIDIACHGS=$(echo ${UPGRADERES} | grep "nvidia" | wc -l)
-echo $(timestamp) "Counted ${NUMNVIDIACHGS} changes to NVIDIA packages"
 
 if [ $NUMNVIDIACHGS -gt 0 ] ; then
     echo $(timestamp) "Counted ${NUMNVIDIACHGS} changes to NVIDIA packages"
+    echo $(timestamp) "FORCING REBOOT IN 5 SECONDS"
+    sleep 5
+    /sbin/reboot
 else
     echo $(timestamp) "No changes to NVIDIA packages"
 fi
