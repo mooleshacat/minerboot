@@ -8,6 +8,8 @@ Features:
 - Enables persistance mode
 - Enables max GPU power (watts) -- *under development, only counts GPU's so far*
 - Enables max GPU speed (frequency) -- *under development*
+- Executes the miner bin -- *under development*
+- Monitors the miner bin -- *under development*
 
 
 
