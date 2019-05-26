@@ -29,6 +29,8 @@ fi
 # Load our functions
 source inc/functions.sh
 
+echo $(timestamp) "MinerBoot v0.1a Started"
+
 # Run our setup script
 source inc/setup.sh
 

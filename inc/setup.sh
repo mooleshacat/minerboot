@@ -20,6 +20,7 @@
 #
 #
 
+
 echo $(timestamp) "Updating system, please wait..."
 UPDATERES=$(apt update 2>&1)
 REMOVERES=$(apt autoremove -y 2>&1)
@@ -29,8 +30,12 @@ REMOVERES=$(echo ${REMOVERES} ; apt autoremove -y 2>&1)
 #   CHECK IF NVIDIA DRIVER WAS UPDATED AND REBOOT
 echo $(timestamp) "Checking NVIDIA updates..."
 NUMNVIDIACHGS=$(echo ${UPGRADERES} | grep "nvidia" | wc -l)
-echo $(timestamp) "Counted ${NUMNVIDIACHGS} changes to NVIDIA packages"
 
+if [ $NUMNVIDIACHGS -gt 0 ] ; then
+    echo $(timestamp) "Counted ${NUMNVIDIACHGS} changes to NVIDIA packages"
+else
+    echo $(timestamp) "No changes to NVIDIA packages"
+fi
 
 echo $(timestamp) "Enabling NVIDIA Persistance Mode..."
 nvidia-smi -pm 1
