@@ -25,7 +25,7 @@ A boot script for your NVIDIA cryptocurrency miners
 ----
 ### Donations:
 
-I have no job, please buy me a coffee!
+#### I have no job, please buy me a coffee!
 
 BTC: 1DkyQHdwCLLSCMU42VjkVqp4yEzZoeJphu
 
