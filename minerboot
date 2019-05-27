@@ -23,6 +23,8 @@
 # CURRENT COIN NAMES (comma separated)
 THECOINS="monero"
 
+FORCE_REBOOT_AFTER_NVIDIA_UPDATE=false
+
 # Make sure only root can run our script
 if [[ $EUID -ne 0 ]]; then
    echo "This script must be run as root" 1>&2
