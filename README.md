@@ -1,6 +1,11 @@
 # MinerBoot v0.1a
 A boot script for your NVIDIA cryptocurrency miners
 ----
+
+MinerBoot script is used to automatically update your NVIDIA mining rig's system and drivers,
+automatically set max power/speed, and execute/monitor your miner bin on startup.
+
+----
 ### MinerBoot Features:
 
 - Self update script
