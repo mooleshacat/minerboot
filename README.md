@@ -12,6 +12,17 @@ A boot script for your NVIDIA cryptocurrency miners
 - Monitors the miner bin -- *under development*
 
 ----
+### Donations:
+
+BTC: 1DkyQHdwCLLSCMU42VjkVqp4yEzZoeJphu
+
+LTC: LcZFoVDFYbBp419Wd8dFgEmMQHowFiMWAG
+
+ETH/ERC20: 0x4e9C540903B70258Dd67baE7566a7AA028941157
+
+TRX/TRC10/TRC20: TYoYantRR1eJHCx4NhDiU9XmZTpbk21Ztz
+
+----
 ### MinerBoot Legal Stuff:
 minerboot - set up and run miner on boot 
 
@@ -29,15 +40,3 @@ GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
-
-----
-### Donations:
-
-BTC: 1DkyQHdwCLLSCMU42VjkVqp4yEzZoeJphu
-
-LTC: LcZFoVDFYbBp419Wd8dFgEmMQHowFiMWAG
-
-ETH/ERC20: 0x4e9C540903B70258Dd67baE7566a7AA028941157
-
-TRX/TRC10/TRC20: TYoYantRR1eJHCx4NhDiU9XmZTpbk21Ztz
-
