@@ -44,6 +44,10 @@ TRX/TRC10/TRC20: TYoYantRR1eJHCx4NhDiU9XmZTpbk21Ztz
 
 XMR: 43pWPSFDVBWCe5gwTXKKN7Q5bARRwFMwZhPBVx2B2tnM4wF6Lj4PKxsLLS5SJ5V96d9tsdCQ2gG4aaCqpxQvEZA9VJXRDRe
 
+XRP: ra1g9zyUNX2PQNBntFmweLCscCPSMwXZro
+
+EOS: tfw4fxgv4k4c
+
 ----
 ### MinerBoot Legal Stuff:
 minerboot - A script to set up and run NVIDIA miner(s) on boot 

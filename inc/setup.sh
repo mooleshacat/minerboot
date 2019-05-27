@@ -24,26 +24,33 @@ logit "Updating minerboot, please wait..."
 cd $BDIR
 git pull
 
-logit "Updating system, please wait..."
-#UPDATERES=$(sudo apt update >/dev/null 2>&1)
-#REMOVERES=$(sudo apt autoremove -y >/dev/null 2>&1)
-#UPGRADERES=$(sudo apt upgrade -y >/dev/null 2>&1 ; sudo apt full-upgrade -y >/dev/null 2>&1 ;)
-#REMOVERES="${REMOVERES} "$(sudo apt autoremove -y >/dev/null 2>&1)
+if [ "$AUTO_APT_UPGRADE" = true ] ; then
 
-#   CHECK IF NVIDIA DRIVER WAS UPDATED AND REBOOT
-logit "Checking NVIDIA updates..."
-NUMNVIDIACHGS=$(echo ${UPGRADERES} | grep "nvidia" | wc -l)
-
-if [ $NUMNVIDIACHGS -gt 0 ] ; then
-    logit "Counted ${NUMNVIDIACHGS} changes to NVIDIA packages :("
+    logit "Updating system, please wait..."
     
-    if [ "$FORCE_REBOOT_AFTER_NVIDIA_UPDATE" = true ] ; then
-        logit "FORCING REBOOT IN 5 SECONDS!"
-        sleep 5
-        /sbin/reboot
+    #UPDATERES=$(sudo apt update >/dev/null 2>&1)
+    #REMOVERES=$(sudo apt autoremove -y >/dev/null 2>&1)
+    #UPGRADERES=$(sudo apt upgrade -y >/dev/null 2>&1 ; sudo apt full-upgrade -y >/dev/null 2>&1 ;)
+    #REMOVERES="${REMOVERES} "$(sudo apt autoremove -y >/dev/null 2>&1)
+    
+    #   CHECK IF NVIDIA DRIVER WAS UPDATED AND REBOOT
+    logit "Checking NVIDIA updates..."
+    NUMNVIDIACHGS=$(echo ${UPGRADERES} | grep "nvidia" | wc -l)
+    
+    if [ $NUMNVIDIACHGS -gt 0 ] ; then
+        logit "Counted ${NUMNVIDIACHGS} changes to NVIDIA packages :("
+        
+        if [ "$FORCE_REBOOT_AFTER_UPGRADE" = true ] ; then
+            logit "FORCING REBOOT IN 5 SECONDS!"
+            sleep 5
+            /sbin/reboot
+        fi
+    else
+        logit "No changes to NVIDIA packages :)"
     fi
+    
 else
-    logit "No changes to NVIDIA packages :)"
+    logit "APT Auto Update is DISABLED (not recommended)"
 fi
 
 logit "Counting GPU's..."
