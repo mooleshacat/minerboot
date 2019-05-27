@@ -37,9 +37,6 @@ logit "MinerBoot v0.1a Started!"
 # Run our setup script
 source inc/setup.sh
 
-# Run the miner(s)
-source miners
-
 logit "MinerBoot v0.1a Finished!"
 
 
