@@ -28,10 +28,10 @@ if [ "$AUTO_APT_UPGRADE" = true ] ; then
 
     logit "Updating system, please wait..."
     
-    #UPDATERES=$(sudo apt update >/dev/null 2>&1)
-    #REMOVERES=$(sudo apt autoremove -y >/dev/null 2>&1)
-    #UPGRADERES=$(sudo apt upgrade -y >/dev/null 2>&1 ; sudo apt full-upgrade -y >/dev/null 2>&1 ;)
-    #REMOVERES="${REMOVERES} "$(sudo apt autoremove -y >/dev/null 2>&1)
+    UPDATERES=$(sudo apt update >/dev/null 2>&1)
+    REMOVERES=$(sudo apt autoremove -y >/dev/null 2>&1)
+    UPGRADERES=$(sudo apt upgrade -y >/dev/null 2>&1 ; sudo apt full-upgrade -y >/dev/null 2>&1 ;)
+    REMOVERES="${REMOVERES} "$(sudo apt autoremove -y >/dev/null 2>&1)
     
     #   CHECK IF NVIDIA DRIVER WAS UPDATED AND REBOOT
     logit "Checking NVIDIA updates..."
