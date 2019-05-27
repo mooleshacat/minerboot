@@ -12,6 +12,12 @@ A boot script for your NVIDIA cryptocurrency miners
 - Monitors the miner bin -- *under development*
 
 ----
+### MinerBoot does NOT:
+
+- Download / build / configure miners
+- Locate a mining pool for you
+
+----
 ### Donations:
 
 BTC: 1DkyQHdwCLLSCMU42VjkVqp4yEzZoeJphu
