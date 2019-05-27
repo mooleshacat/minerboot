@@ -27,6 +27,8 @@ if [[ $EUID -ne 0 ]]; then
    exit 1
 fi
 
+SCRIPT_VER="v1.0.1a"
+
 BDIR="$( cd "$(dirname "$0")" ; pwd -P )"
 WDIR=$(pwd)
 
@@ -36,7 +38,7 @@ source ${BDIR}/inc/functions.sh
 # Load our config
 source ${BDIR}/config
 
-logit "MinerBoot v0.1a Started!"
+logit "MinerBoot ${SCRIPT_VER} Started!"
 
 # Run our setup script
 source ${BDIR}/inc/setup.sh
@@ -52,14 +54,16 @@ do
         TMPPID=$(cat ${BDIR}/tmp/${CURRENT_COIN}.pid)
         TMPRES=$(ps axu | grep "${TMPPID}" | wc -l)
 
-        if [ "$TMPRES" -eq 0 ] ; then
-        
-            logit "Starting miner for ${CURRENT_COIN}"
+        if [ "$TMPRES" -le 1 ] ; then
+                    
             if [ ! -f ${BDIR}/miners/${CURRENT_COIN} ] ; then
                 logit "File ${BDIR}/miners/${CURRENT_COIN} does not exist!"
                 logit "Skipping coin ${CURRENT_COIN}!"
             else
+                
                 source ${BDIR}/miners/${CURRENT_COIN}
+            
+                logit "Starting miner for ${CURRENT_COIN}"
                 
                 if [ -z "$MINERLOG" ] ; then MINERLOG=/dev/null; fi    
                 
@@ -83,15 +87,55 @@ do
 done
     
     
+logit "Monitoring miner(s) ${THECOINS} (CTRL + C TO EXIT)"
+logit "Monitoring miner(s) ${THECOINS} (CTRL + C TO EXIT)"
+logit "Monitoring miner(s) ${THECOINS} (CTRL + C TO EXIT)"
 
-# logit "Monitoring miner(s) ${THECOINS}"
+while [ "$MONITOR_COINS" = true ]
+do
 
-# MONITOR MINERS BY PID LIST
+    for CURRENT_COIN in "${THE_COINS[@]}"
+    do
+        
+        TMPPID=$(cat ${BDIR}/tmp/${CURRENT_COIN}.pid)
+        TMPRES=$(ps axu | grep "${TMPPID}" | wc -l)
+    
+        if [ "$TMPRES" -le 1 ] ; then
+        
+            if [ ! -f ${BDIR}/miners/${CURRENT_COIN} ] ; then
+                logit "File ${BDIR}/miners/${CURRENT_COIN} does not exist!"
+                logit "Skipping coin ${CURRENT_COIN}!"
+            else
+            
+                source ${BDIR}/miners/${CURRENT_COIN}
+                
+                if [ "$MONITOR" = true ] ; then
+            
+                    logit "Miner for ${CURRENT_COIN} shut down unexpectedly...!"
+                    logit "Starting miner for ${CURRENT_COIN}"
+                    
+                    if [ -z "$MINERLOG" ] ; then MINERLOG=/dev/null; fi    
+                    
+                    sudo /bin/bash -c ${MINERCMD} > ${MINERLOG} 2>&1 &
+                    
+                    logit "Miner started for ${CURRENT_COIN} PID: ${!}"
+                    
+                    echo "${!}" > ${BDIR}/tmp/${CURRENT_COIN}.pid
+                    
+                fi
+            fi
+        fi
+            
+    done
+    
+    logit "Miner check complete!"
+    
+    sleep ${MONITOR_INTERVAL}
 
-# RESTART MINERS IF FAIL
+done
 
 
-logit "MinerBoot v0.1a Finished!"
+logit "MinerBoot ${SCRIPT_VER} Finished!"
 
 
 

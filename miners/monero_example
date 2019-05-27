@@ -20,5 +20,11 @@
 #
 #
 
-MINERCMD="/root/MINERS/suprminer/ccminer -a x16r -o stratum+tcp://us.rvn.minermore.com:4501 -u myusername.BOX -p x --devices=0"
+# MONITOR AND RESTART THIS MINER
+MONITOR=true
+
+# COMMAND TO START MINER (WITH PARAMETERS)
+MINERCMD="/root/MINERS/suprminer/ccminer -a x16r -o stratum+tcp://us.rvn.minermore.com:4501 -u MYUSERNAME.MYWORKERNAME -p x --devices=0"
+
+# LOCATION OF LOG FILE
 MINERLOG="/root/MINERS/logs/monero.log"

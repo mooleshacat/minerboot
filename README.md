@@ -1,4 +1,4 @@
-# MinerBoot v0.1a
+# MinerBoot v1.0.1a
 
 MinerBoot script is used to automatically update your NVIDIA mining rig's system and drivers,
 automatically set max power/speed, and execute/monitor your miner bin on startup.
@@ -15,9 +15,9 @@ automatically set max power/speed, and execute/monitor your miner bin on startup
 - Enables max GPU power (watts) **
 - Enables max GPU speed (mhz) **
 - Executes the miner bin
-- Monitors & Restarts the miner bin -- *under development*
+- Monitors & Restarts the miner bin
 - Works with any command line miner
-- Easy to understand documentation -- *under development*
+- Easy to understand documentation -- *under development, coming shortly!*
 
 (*) Only for NVIDIA driver installed using APT package manager<br />
 (**) For supported GPU's only
