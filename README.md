@@ -16,11 +16,11 @@ A boot script for your NVIDIA cryptocurrency miners
 ----
 ### MinerBoot does NOT:
 
-- Teach you Cryptocurrency
-- Teach you UNIX/Shell scripting
+- Teach you UNIX / Shell scripting
+- Teach you Cryptocurrency / Mining
+- Locate a mining pool for you
 - Download / install NVIDIA drivers for you
 - Download / build / configure miners for you
-- Locate a mining pool for you
 
 ----
 ### Donations:
