@@ -10,7 +10,7 @@ A boot script for your NVIDIA cryptocurrency miners
 - Enables persistance mode
 - Enables max GPU power (watts) **
 - Enables max GPU speed (mhz) **
-- Executes the miner bin -- *under development*
+- Executes the miner bin
 - Monitors & Restarts the miner bin -- *under development*
 - Easy to understand documentation -- *under development*
 
