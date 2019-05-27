@@ -24,7 +24,7 @@ TRX/TRC10/TRC20: TYoYantRR1eJHCx4NhDiU9XmZTpbk21Ztz
 
 ----
 ### MinerBoot Legal Stuff:
-minerboot - set up and run miner on boot 
+minerboot - A script to set up and run NVIDIA miner(s) on boot 
 
 Copyright (C) 2019 LeshaCat
 

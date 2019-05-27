@@ -46,3 +46,9 @@ nvidia-smi -pm 1
 echo $(timestamp) "Counting GPU's..."
 NUMGPUS=$(nvidia-smi -L | grep "UUID:" | wc -l)
 echo $(timestamp) "Counted ${NUMGPUS} GPU's"
+
+
+
+
+
+
