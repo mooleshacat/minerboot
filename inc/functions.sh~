@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #
 #
-#  minerboot script - set up and run miner on boot 
+#  minerboot - A script to set up and run NVIDIA miner(s) on boot
 #
 #  Copyright (C) 2019 LeshaCat
 #
@@ -22,16 +22,7 @@
 
 timestamp() { date +"[%Y-%m-%d/%H-%M-%S]"; }
 
-
-
-
-
-
-
-
-
-
-
+logit() { echo $(timestamp) "${1}"; }
 
 
 

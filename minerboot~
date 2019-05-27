@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #
 #
-#  minerboot script - set up and run miner on boot 
+#  minerboot - A script to set up and run NVIDIA miner(s) on boot
 #
 #  Copyright (C) 2019 LeshaCat
 #
@@ -29,7 +29,7 @@ fi
 # Load our functions
 source inc/functions.sh
 
-echo $(timestamp) "MinerBoot v0.1a Started!"
+$(logit "MinerBoot v0.1a Started!")
 
 # Run our setup script
 source inc/setup.sh
@@ -37,7 +37,7 @@ source inc/setup.sh
 # Run the miner(s)
 source miners
 
-echo $(timestamp) "MinerBoot v0.1a Finished!"
+$(logit "MinerBoot v0.1a Finished!")
 
 
 
