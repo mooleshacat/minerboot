@@ -12,6 +12,7 @@ A boot script for your NVIDIA cryptocurrency miners
 - Enables max GPU speed (mhz) **
 - Executes the miner bin
 - Monitors & Restarts the miner bin -- *under development*
+- Works with any command line miner
 - Easy to understand documentation -- *under development*
 
 (*) Only for NVIDIA driver installed using APT package manager<br />
