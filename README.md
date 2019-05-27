@@ -1,5 +1,5 @@
 # MinerBoot v0.1a
-##### A boot script for your NVIDIA cryptocurrency miners
+##### A boot script for NVIDIA cryptocurrency miners
 
 ----
 
