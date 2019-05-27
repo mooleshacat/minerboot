@@ -25,13 +25,19 @@ A boot script for your NVIDIA cryptocurrency miners
 ----
 ### Donations:
 
+I have no job, please buy me a coffee!
+
 BTC: 1DkyQHdwCLLSCMU42VjkVqp4yEzZoeJphu
 
 LTC: LcZFoVDFYbBp419Wd8dFgEmMQHowFiMWAG
 
 ETH/ERC20: 0x4e9C540903B70258Dd67baE7566a7AA028941157
 
+BNB/BEP2: bnb13xrspuyzhq89mqwzhqfuxva6l65dxuaxa8t452
+
 TRX/TRC10/TRC20: TYoYantRR1eJHCx4NhDiU9XmZTpbk21Ztz
+
+XMR: 43pWPSFDVBWCe5gwTXKKN7Q5bARRwFMwZhPBVx2B2tnM4wF6Lj4PKxsLLS5SJ5V96d9tsdCQ2gG4aaCqpxQvEZA9VJXRDRe
 
 ----
 ### MinerBoot Legal Stuff:

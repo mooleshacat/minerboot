@@ -49,8 +49,29 @@ logit "Counted ${NUMGPUS} GPU's"
 
 for (( c=0; c<=($NUMGPUS-1); c++ ))
 do
-  logit "Getting info for GPU #${c}"  
-  QRES="${QRES} "$(nvidia-smi -i ${c} -q;)
+    
+    logit "Getting info for GPU #${c}"  
+    
+    QRES=$(nvidia-smi -i ${c} -q)  
+    CRES=$(echo "$QRES" | grep "Max Clocks" -A 4) 
+    
+    QRES=$(echo "$QRES" | grep "Max Power Limit") 
+  
+    IFS=':' # space is set as delimiter
+    read -ra ADDR <<< "$QRES"
+    MAX_POWER=$(echo "${ADDR[1]}" | xargs)
+    
+    IFS='.' # space is set as delimiter
+    read -ra ADDR <<< "$MAX_POWER"
+    MAX_POWER=$(echo "${ADDR[0]}" | xargs)
+    
+    logit "GPU #${c} Setting Max Power: ${MAX_POWER}"   
+    nvidia-smi -i ${c} -pl ${MAX_POWER} 2>&1 >/dev/null
+    
+    echo "============================================================"
+    echo "${CRES}"
+    echo "============================================================"
+  
 done
 
 

@@ -41,8 +41,14 @@ logit "MinerBoot v0.1a Started!"
 source ${BDIR}/inc/setup.sh
 
 logit "Starting miner for ${CURRENT_COIN}"
+if [ ! -f ${BDIR}/coins/${CURRENT_COIN} ] ; then
+  logit "File ${BDIR}/coins/${CURRENT_COIN} does not exist!"
+else
+  source ${BDIR}/coins/${CURRENT_COIN}
+fi
 
 logit "Monitoring miner for ${CURRENT_COIN}"
+
 
 logit "MinerBoot v0.1a Finished!"
 
