@@ -22,10 +22,10 @@
 
 
 logit "Updating system, please wait..."
-UPDATERES=$(apt update 2>&1)
-REMOVERES=$(apt autoremove -y 2>&1)
-UPGRADERES=$(apt upgrade -y 2>&1 ; apt full-upgrade -y 2>&1 ;)
-REMOVERES="${REMOVERES} "$(apt autoremove -y 2>&1)
+#UPDATERES=$(sudo apt update 2>&1)
+#REMOVERES=$(sudo apt autoremove -y 2>&1)
+#UPGRADERES=$(sudo apt upgrade -y 2>&1 ; sudo apt full-upgrade -y 2>&1 ;)
+#REMOVERES="${REMOVERES} "$(sudo apt autoremove -y 2>&1)
 
 #   CHECK IF NVIDIA DRIVER WAS UPDATED AND REBOOT
 logit "Checking NVIDIA updates..."
@@ -38,7 +38,7 @@ if [ $NUMNVIDIACHGS -gt 0 ] ; then
         logit "FORCING REBOOT IN 5 SECONDS!"
         sleep 5
         /sbin/reboot
-    if
+    fi
 else
     logit "No changes to NVIDIA packages :)"
 fi

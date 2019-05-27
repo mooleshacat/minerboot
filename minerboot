@@ -57,7 +57,7 @@ do
         
         if [ -z "$MINERLOG" ] ; then MINERLOG=/dev/null; fi    
         
-        $MINERCMD 2>&1 > ${MINERLOG} &
+        $($MINERCMD 2>&1 > ${MINERLOG} &)
         
         logit "Miner started for ${CURRENT_COIN} PID: ${!}"
         
