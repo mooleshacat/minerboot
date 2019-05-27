@@ -22,10 +22,10 @@
 
 
 logit "Updating system, please wait..."
-UPDATERES=$(apt update 2>&1)
-REMOVERES=$(apt autoremove -y 2>&1)
-UPGRADERES=$(apt upgrade -y 2>&1 ; apt full-upgrade -y 2>&1 ;)
-REMOVERES=$(echo ${REMOVERES} ; apt autoremove -y 2>&1)
+#UPDATERES=$(apt update 2>&1)
+#REMOVERES=$(apt autoremove -y 2>&1)
+#UPGRADERES=$(apt upgrade -y 2>&1 ; apt full-upgrade -y 2>&1 ;)
+#REMOVERES="${REMOVERES} "$(apt autoremove -y 2>&1)
 
 #   CHECK IF NVIDIA DRIVER WAS UPDATED AND REBOOT
 logit "Checking NVIDIA updates..."
@@ -35,7 +35,7 @@ if [ $NUMNVIDIACHGS -gt 0 ] ; then
     logit "Counted ${NUMNVIDIACHGS} changes to NVIDIA packages"
     logit "FORCING REBOOT IN 5 SECONDS"
     sleep 5
-    /sbin/reboot
+    #/sbin/reboot
 else
     logit "No changes to NVIDIA packages"
 fi
@@ -47,8 +47,12 @@ logit "Counting GPU's..."
 NUMGPUS=$(nvidia-smi -L | grep "UUID:" | wc -l)
 logit "Counted ${NUMGPUS} GPU's"
 
+for (( c=0; c<=($NUMGPUS-1); c++ ))
+do
+  logit "Getting info for GPU #${c}"  
+  QRES="${QRES} "$(nvidia-smi -i ${c} -q;)
+done
 
-
-
+logit "Starting miner for ${CURRENT_COIN}"
 
 
