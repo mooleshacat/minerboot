@@ -4,17 +4,20 @@ A boot script for your NVIDIA cryptocurrency miners
 ### MinerBoot Features:
 
 - Self update -- *under development*
-- Updates system / NVIDIA apt packages
-- Reboots if driver update is detected
+- Update system / NVIDIA apt packages
+- Reboot if driver update is detected
 - Enables persistance mode
 - Enables max GPU power (watts) -- *under development, only counts GPU's so far*
 - Enables max GPU speed (frequency) -- *under development*
 - Executes the miner bin -- *under development*
 - Monitors the miner bin -- *under development*
+- Easy to understand documentation -- *under development*
 
 ----
 ### MinerBoot does NOT:
 
+- Teach you Cryptocurrency
+- Teach you UNIX/Shell scripting
 - Download / install NVIDIA drivers for you
 - Download / build / configure miners for you
 - Locate a mining pool for you
