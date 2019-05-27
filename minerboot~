@@ -31,15 +31,18 @@ fi
 
 BDIR="$( cd "$(dirname "$0")" ; pwd -P )"
 WDIR=$(pwd)
-echo "BDIR: ${BDIR} WDIR: ${WDIR}"
 
 # Load our functions
-source inc/functions.sh
+source ${BDIR}/inc/functions.sh
 
 logit "MinerBoot v0.1a Started!"
 
 # Run our setup script
-source inc/setup.sh
+source ${BDIR}/inc/setup.sh
+
+logit "Starting miner for ${CURRENT_COIN}"
+
+logit "Monitoring miner for ${CURRENT_COIN}"
 
 logit "MinerBoot v0.1a Finished!"
 

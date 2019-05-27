@@ -32,16 +32,16 @@ logit "Checking NVIDIA updates..."
 NUMNVIDIACHGS=$(echo ${UPGRADERES} | grep "nvidia" | wc -l)
 
 if [ $NUMNVIDIACHGS -gt 0 ] ; then
-    logit "Counted ${NUMNVIDIACHGS} changes to NVIDIA packages"
-    logit "FORCING REBOOT IN 5 SECONDS"
+    logit "Counted ${NUMNVIDIACHGS} changes to NVIDIA packages :("
+    logit "FORCING REBOOT IN 5 SECONDS!"
     sleep 5
     /sbin/reboot
 else
-    logit "No changes to NVIDIA packages"
+    logit "No changes to NVIDIA packages :)"
 fi
 
 logit "Enabling NVIDIA Persistance Mode..."
-nvidia-smi -pm 1
+nvidia-smi -pm 1 2>&1 >/dev/null
 
 logit "Counting GPU's..."
 NUMGPUS=$(nvidia-smi -L | grep "UUID:" | wc -l)
@@ -53,6 +53,5 @@ do
   QRES="${QRES} "$(nvidia-smi -i ${c} -q;)
 done
 
-logit "Starting miner for ${CURRENT_COIN}"
 
 

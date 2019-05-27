@@ -40,6 +40,10 @@ logit "MinerBoot v0.1a Started!"
 # Run our setup script
 source ${BDIR}/inc/setup.sh
 
+logit "Starting miner for ${CURRENT_COIN}"
+
+logit "Monitoring miner for ${CURRENT_COIN}"
+
 logit "MinerBoot v0.1a Finished!"
 
 
