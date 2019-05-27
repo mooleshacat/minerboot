@@ -34,7 +34,7 @@ automatically set max power/speed, and execute/monitor your miner bin on startup
 ----
 ### Donations:
 
-#### I have no job/income, please buy me a coffee to keep me motivated!
+#### I have no job or income, please buy me a coffee to keep me motivated!
 
 BTC: 1DkyQHdwCLLSCMU42VjkVqp4yEzZoeJphu
 
