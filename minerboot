@@ -54,7 +54,7 @@ do
         TMPPID=$(cat ${BDIR}/tmp/${CURRENT_COIN}.pid)        
         TMPRES=$(ps -p ${TMPPID} | wc -l)
 
-        if [ "$TMPRES" -gt 1 ] ; then
+        if [ $TMPRES -eq 1 ] ; then
                     
             if [ ! -f ${BDIR}/miners/${CURRENT_COIN} ] ; then
                 logit "File ${BDIR}/miners/${CURRENT_COIN} does not exist!"
@@ -100,7 +100,7 @@ do
         TMPPID=$(cat ${BDIR}/tmp/${CURRENT_COIN}.pid)        
         TMPRES=$(ps -p ${TMPPID} | wc -l)
 
-        if [ "$TMPRES" -gt 1 ] ; then
+        if [ $TMPRES -eq 1 ] ; then
         
             if [ ! -f ${BDIR}/miners/${CURRENT_COIN} ] ; then
                 logit "File ${BDIR}/miners/${CURRENT_COIN} does not exist!"
