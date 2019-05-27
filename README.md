@@ -4,7 +4,8 @@ A boot script for your NVIDIA cryptocurrency miners
 ### MinerBoot Features:
 
 - Self update -- *under development*
-- Update system / NVIDIA apt packages *
+- Update system packages
+- Update NVIDIA packages *
 - Reboot if driver update is detected
 - Enables persistance mode
 - Enables max GPU power (watts) **
@@ -13,7 +14,7 @@ A boot script for your NVIDIA cryptocurrency miners
 - Monitors the miner bin -- *under development*
 - Easy to understand documentation -- *under development*
 
-(*) Must install NVIDIA driver using APT<br />
+(*) Only for NVIDIA driver installed using APT package manager<br />
 (**) For supported GPU's only
 
 ----
