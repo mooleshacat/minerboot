@@ -14,6 +14,7 @@ A boot script for your NVIDIA cryptocurrency miners
 - Easy to understand documentation -- *under development*
 
 (*) Must install NVIDIA driver using APT
+
 (**) For supported GPU's only
 
 ----
