@@ -47,7 +47,7 @@ else
 fi
 
 logit "Counting GPU's..."
-NUMGPUS=$(nvidia-smi -L | grep "UUID:" | wc -l)
+NUMGPUS=$(sudo nvidia-smi -L | grep "UUID:" | wc -l)
 logit "Counted ${NUMGPUS} GPU's"
 
 for (( c=0; c<=($NUMGPUS-1); c++ ))
@@ -55,23 +55,23 @@ do
     
     logit "Resetting GPU #${c}"
     
-    nvidia-smi -i ${c} -r #2>&1 >/dev/null
-    nvidia-smi -i ${c} -rgc #2>&1 >/dev/null
-    nvidia-smi -i ${c} -rac #2>&1 >/dev/null
+    sudo nvidia-smi -i ${c} -r #2>&1 >/dev/null
+    sudo nvidia-smi -i ${c} -rgc #2>&1 >/dev/null
+    sudo nvidia-smi -i ${c} -rac #2>&1 >/dev/null
     
     logit "Enabling NVIDIA Persistance Mode..."
-    nvidia-smi -i ${c} -pm 1 #2>&1 >/dev/null
+    sudo nvidia-smi -i ${c} -pm 1 #2>&1 >/dev/null
     
     logit "Enabling other options..."
-    nvidia-smi -i ${c} -cc 1 #2>&1 >/dev/null
-    nvidia-smi -i ${c} -acp 0 #2>&1 >/dev/null
-    nvidia-smi -i ${c} --auto-boost-permission=0 #2>&1 >/dev/null
-    nvidia-smi -i ${c} --auto-boost-default=1 #2>&1 >/dev/null
+    sudo nvidia-smi -i ${c} -cc 1 #2>&1 >/dev/null
+    sudo nvidia-smi -i ${c} -acp 0 #2>&1 >/dev/null
+    sudo nvidia-smi -i ${c} --auto-boost-permission=0 #2>&1 >/dev/null
+    sudo nvidia-smi -i ${c} --auto-boost-default=1 #2>&1 >/dev/null
 
     
     logit "Getting info for GPU #${c}"  
     
-    QRES=$(nvidia-smi -i ${c} -q)  
+    QRES=$(sudo nvidia-smi -i ${c} -q)  
     CRES=$(echo "$QRES" | grep "Max Clocks" -A 4) 
     
     QRES=$(echo "$QRES" | grep "Max Power Limit") 
@@ -87,7 +87,7 @@ do
     MAX_POWER=$(echo "${ADDR[0]}" | xargs)
     
     logit "GPU #${c} Setting Max Power: ${MAX_POWER}"   
-    nvidia-smi -i ${c} -pl ${MAX_POWER} #2>&1 >/dev/null
+    sudo nvidia-smi -i ${c} -pl ${MAX_POWER} #2>&1 >/dev/null
     
     # GET CLOCK SPEEDS   
      
@@ -115,7 +115,7 @@ do
     
     logit "GPU #${c} Setting Max Graphics Clock Speed: ${MAX_GFXCLK} Mhz"  
     
-    nvidia-smi -i ${c} -ac ${MAX_MEMCLK},${MAX_GFXCLK} #2>&1 >/dev/null
+    sudo nvidia-smi -i ${c} -ac ${MAX_MEMCLK},${MAX_GFXCLK} #2>&1 >/dev/null
   
 done
 
