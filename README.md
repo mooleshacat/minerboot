@@ -7,8 +7,8 @@ A boot script for your NVIDIA cryptocurrency miners
 - Update system / NVIDIA apt packages
 - Reboot if driver update is detected
 - Enables persistance mode
-- Enables max GPU power (watts) -- *under development, only counts GPU's so far*
-- Enables max GPU speed (frequency) -- *under development*
+- Enables max GPU power (watts)
+- Enables max GPU speed (mhz)
 - Executes the miner bin -- *under development*
 - Monitors the miner bin -- *under development*
 - Easy to understand documentation -- *under development*

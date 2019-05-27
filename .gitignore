@@ -2,11 +2,11 @@
 # Ignore Temporary Files
 *~*
 inc/*~*
-coins/*~*
+miners/*~*
 
 # Ignore Coin Configs (Except examples)
-coins/*
-!coins/*_example
+miners/*
+!miners/*_example
 
 # Ignore Personal Access Token
 access-token

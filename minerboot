@@ -20,7 +20,7 @@
 #
 #
 
-# CURRENT COIN NAME (nano coins/COINNAME)
+# CURRENT COIN NAMES (comma separated)
 CURRENT_COIN="monero"
 
 # Make sure only root can run our script
@@ -40,12 +40,27 @@ logit "MinerBoot v0.1a Started!"
 # Run our setup script
 source ${BDIR}/inc/setup.sh
 
+# Todo: Comma Separation
+
 logit "Starting miner for ${CURRENT_COIN}"
-if [ ! -f ${BDIR}/coins/${CURRENT_COIN} ] ; then
-  logit "File ${BDIR}/coins/${CURRENT_COIN} does not exist!"
+if [ ! -f ${BDIR}/miners/${CURRENT_COIN} ] ; then
+    logit "File ${BDIR}/miners/${CURRENT_COIN} does not exist!"
+    logit "Skipping coin ${CURRENT_COIN}!"
 else
-  source ${BDIR}/coins/${CURRENT_COIN}
+    source ${BDIR}/miners/${CURRENT_COIN}
+    
+#    IFS=' ' # space is set as delimiter
+#    read -ra ADDR <<< "$MINERCMD"
+#    MINERBIN=$(echo "${ADDR[0]}" | xargs)
+#    MINERBIN=$(basename ${MINERBIN})
+    
+    if [ -z "$MINERLOG" ] ; then MINERLOG=/dev/null; fi    
+    
+    $MINERCMD 2>&1 > ${MINERLOG} &
+    
+    logit "Miner started for ${CURRENT_COIN} PID: ${!}"
 fi
+    
 
 logit "Monitoring miner for ${CURRENT_COIN}"
 

@@ -40,9 +40,6 @@ else
     logit "No changes to NVIDIA packages :)"
 fi
 
-logit "Enabling NVIDIA Persistance Mode..."
-nvidia-smi -pm 1 2>&1 >/dev/null
-
 logit "Counting GPU's..."
 NUMGPUS=$(nvidia-smi -L | grep "UUID:" | wc -l)
 logit "Counted ${NUMGPUS} GPU's"
@@ -50,12 +47,30 @@ logit "Counted ${NUMGPUS} GPU's"
 for (( c=0; c<=($NUMGPUS-1); c++ ))
 do
     
+    logit "Resetting GPU #${c}"
+    
+    nvidia-smi -i ${c} -r #2>&1 >/dev/null
+    nvidia-smi -i ${c} -rgc #2>&1 >/dev/null
+    nvidia-smi -i ${c} -rac #2>&1 >/dev/null
+    
+    logit "Enabling NVIDIA Persistance Mode..."
+    nvidia-smi -i ${c} -pm 1 #2>&1 >/dev/null
+    
+    logit "Enabling other options..."
+    nvidia-smi -i ${c} -cc 1 #2>&1 >/dev/null
+    nvidia-smi -i ${c} -acp 0 #2>&1 >/dev/null
+    nvidia-smi -i ${c} --auto-boost-permission=0 #2>&1 >/dev/null
+    nvidia-smi -i ${c} --auto-boost-default=1 #2>&1 >/dev/null
+
+    
     logit "Getting info for GPU #${c}"  
     
     QRES=$(nvidia-smi -i ${c} -q)  
     CRES=$(echo "$QRES" | grep "Max Clocks" -A 4) 
     
     QRES=$(echo "$QRES" | grep "Max Power Limit") 
+  
+    # GET MAX POWER LEVEL  
   
     IFS=':' # space is set as delimiter
     read -ra ADDR <<< "$QRES"
@@ -66,13 +81,40 @@ do
     MAX_POWER=$(echo "${ADDR[0]}" | xargs)
     
     logit "GPU #${c} Setting Max Power: ${MAX_POWER}"   
-    nvidia-smi -i ${c} -pl ${MAX_POWER} 2>&1 >/dev/null
+    nvidia-smi -i ${c} -pl ${MAX_POWER} #2>&1 >/dev/null
     
-    echo "============================================================"
-    echo "${CRES}"
-    echo "============================================================"
+    # GET CLOCK SPEEDS   
+     
+    MAX_MEMCLK=$(echo "$CRES" | grep "Memory")
+    
+    IFS=':' # space is set as delimiter
+    read -ra ADDR <<< "$MAX_MEMCLK"
+    MAX_MEMCLK=$(echo "${ADDR[1]}" | xargs)  
+    
+    IFS=' ' # space is set as delimiter
+    read -ra ADDR <<< "$MAX_MEMCLK"
+    MAX_MEMCLK=$(echo "${ADDR[0]}" | xargs)  
+    
+    logit "GPU #${c} Setting Max Memory Clock Speed: ${MAX_MEMCLK} Mhz"  
+     
+    MAX_GFXCLK=$(echo "$CRES" | grep "Graphics")
+    
+    IFS=':' # space is set as delimiter
+    read -ra ADDR <<< "$MAX_GFXCLK"
+    MAX_GFXCLK=$(echo "${ADDR[1]}" | xargs)  
+    
+    IFS=' ' # space is set as delimiter
+    read -ra ADDR <<< "$MAX_GFXCLK"
+    MAX_GFXCLK=$(echo "${ADDR[0]}" | xargs)  
+    
+    logit "GPU #${c} Setting Max Graphics Clock Speed: ${MAX_GFXCLK} Mhz"  
+    
+    nvidia-smi -i ${c} -ac ${MAX_MEMCLK},${MAX_GFXCLK} #2>&1 >/dev/null
   
 done
+
+
+
 
 
 
