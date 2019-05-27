@@ -13,7 +13,7 @@ A boot script for your NVIDIA cryptocurrency miners
 - Monitors the miner bin -- *under development*
 - Easy to understand documentation -- *under development*
 
-* For supported GPU's only
+(*) For supported GPU's only
 
 ----
 ### MinerBoot does NOT:
