@@ -8,5 +8,5 @@ coins/*~*
 coins/*
 !coins/*_example
 
-# Ignore Access Token
+# Ignore Personal Access Token
 access-token
