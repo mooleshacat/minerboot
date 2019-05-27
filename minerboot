@@ -21,7 +21,7 @@
 #
 
 # CURRENT COIN NAMES (comma separated)
-CURRENT_COIN="monero"
+THECOINS="monero"
 
 # Make sure only root can run our script
 if [[ $EUID -ne 0 ]]; then
@@ -29,40 +29,48 @@ if [[ $EUID -ne 0 ]]; then
    exit 1
 fi
 
-BDIR="$( cd "$(dirname "$0")" ; pwd -P )"
-WDIR=$(pwd)
-
 # Load our functions
 source ${BDIR}/inc/functions.sh
+
+BDIR="$( cd "$(dirname "$0")" ; pwd -P )"
+WDIR=$(pwd)
 
 logit "MinerBoot v0.1a Started!"
 
 # Run our setup script
 source ${BDIR}/inc/setup.sh
 
-# Todo: Comma Separation
+IFS=',' # space is set as delimiter
+read -ra THE_COINS <<< "${THECOINS}"
 
-logit "Starting miner for ${CURRENT_COIN}"
-if [ ! -f ${BDIR}/miners/${CURRENT_COIN} ] ; then
-    logit "File ${BDIR}/miners/${CURRENT_COIN} does not exist!"
-    logit "Skipping coin ${CURRENT_COIN}!"
-else
-    source ${BDIR}/miners/${CURRENT_COIN}
+for CURRENT_COIN in "${THE_COINS[@]}"
+do
+
+    logit "Starting miner for ${CURRENT_COIN}"
+    if [ ! -f ${BDIR}/miners/${CURRENT_COIN} ] ; then
+        logit "File ${BDIR}/miners/${CURRENT_COIN} does not exist!"
+        logit "Skipping coin ${CURRENT_COIN}!"
+    else
+        source ${BDIR}/miners/${CURRENT_COIN}
+        
+        if [ -z "$MINERLOG" ] ; then MINERLOG=/dev/null; fi    
+        
+        $MINERCMD 2>&1 > ${MINERLOG} &
+        
+        logit "Miner started for ${CURRENT_COIN} PID: ${!}"
+        
+        echo "${!}" > ${BDIR}/tmp/${CURRENT_COIN}.pid
+    fi
     
-#    IFS=' ' # space is set as delimiter
-#    read -ra ADDR <<< "$MINERCMD"
-#    MINERBIN=$(echo "${ADDR[0]}" | xargs)
-#    MINERBIN=$(basename ${MINERBIN})
+done
     
-    if [ -z "$MINERLOG" ] ; then MINERLOG=/dev/null; fi    
-    
-    $MINERCMD 2>&1 > ${MINERLOG} &
-    
-    logit "Miner started for ${CURRENT_COIN} PID: ${!}"
-fi
     
 
-logit "Monitoring miner for ${CURRENT_COIN}"
+# logit "Monitoring miner(s) ${THECOINS}"
+
+# MONITOR MINERS BY PID LIST
+
+# RESTART MINERS IF FAIL
 
 
 logit "MinerBoot v0.1a Finished!"

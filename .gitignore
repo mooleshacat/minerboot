@@ -3,10 +3,15 @@
 *~*
 inc/*~*
 miners/*~*
+tmp/*~*
 
 # Ignore Coin Configs (Except examples)
 miners/*
 !miners/*_example
+
+# Ignore Coin Configs (Except examples)
+tmp/*
+!tmp/
 
 # Ignore Personal Access Token
 access-token
