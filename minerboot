@@ -20,10 +20,6 @@
 #
 #
 
-# CURRENT COIN NAMES (comma separated)
-THECOINS="monero"
-
-FORCE_REBOOT_AFTER_NVIDIA_UPDATE=false
 
 # Make sure only root can run our script
 if [[ $EUID -ne 0 ]]; then
@@ -36,6 +32,9 @@ WDIR=$(pwd)
 
 # Load our functions
 source ${BDIR}/inc/functions.sh
+
+# Load our config
+source ${BDIR}/config
 
 logit "MinerBoot v0.1a Started!"
 

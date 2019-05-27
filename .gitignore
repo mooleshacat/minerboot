@@ -6,6 +6,7 @@ miners/*~*
 tmp/*~*
 
 # Ignore Coin Configs (Except examples)
+config
 miners/*
 !miners/*_example
 
