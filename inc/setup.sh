@@ -20,8 +20,20 @@
 #
 #
 
+if [ ! -f /bin/minerboot ] ; then
+    logit "Adding minerboot to /bin/"
+    cd /bin/
+    ln -s minerboot ${BDIR}/minerboot
+else
+    logit "minerboot is already in /bin/..."
+fi
+
 logit "Updating minerboot, please wait..."
-cd $BDIR
+cd ${BDIR}
+git pull
+
+logit "Updating minerboot, please wait..."
+cd ${BDIR}
 git pull
 
 if [ "$AUTO_APT_UPGRADE" = true ] ; then
