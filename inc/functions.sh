@@ -23,6 +23,3 @@
 timestamp() { date +"[%Y-%m-%d/%H-%M-%S]"; }
 
 logit() { echo $(timestamp) "${1}"; }
-
-
-

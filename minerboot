@@ -47,21 +47,38 @@ read -ra THE_COINS <<< "${THECOINS}"
 for CURRENT_COIN in "${THE_COINS[@]}"
 do
 
-    logit "Starting miner for ${CURRENT_COIN}"
-    if [ ! -f ${BDIR}/miners/${CURRENT_COIN} ] ; then
-        logit "File ${BDIR}/miners/${CURRENT_COIN} does not exist!"
-        logit "Skipping coin ${CURRENT_COIN}!"
+    if [ -f ${BDIR}/miners/${CURRENT_COIN} ] ; then
+    
+        TMPPID=$(cat ${BDIR}/tmp/${CURRENT_COIN}.pid)
+        TMPRES=$(ps axu | grep "${TMPPID}" | wc -l)
+
+        if [ "$TMPRES" -eq 0 ] ; then
+        
+            logit "Starting miner for ${CURRENT_COIN}"
+            if [ ! -f ${BDIR}/miners/${CURRENT_COIN} ] ; then
+                logit "File ${BDIR}/miners/${CURRENT_COIN} does not exist!"
+                logit "Skipping coin ${CURRENT_COIN}!"
+            else
+                source ${BDIR}/miners/${CURRENT_COIN}
+                
+                if [ -z "$MINERLOG" ] ; then MINERLOG=/dev/null; fi    
+                
+                sudo /bin/bash -c ${MINERCMD} > ${MINERLOG} 2>&1 &
+                
+                logit "Miner started for ${CURRENT_COIN} PID: ${!}"
+                
+                echo "${!}" > ${BDIR}/tmp/${CURRENT_COIN}.pid
+            fi
+        
+        else
+            logit "Miner for ${CURRENT_COIN} is already started!"
+            logit "Skipping coin ${CURRENT_COIN}!"
+        fi
+        
     else
-        source ${BDIR}/miners/${CURRENT_COIN}
-        
-        if [ -z "$MINERLOG" ] ; then MINERLOG=/dev/null; fi    
-        
-        sudo /bin/bash -c ${MINERCMD} > ${MINERLOG} 2>&1 &
-        
-        logit "Miner started for ${CURRENT_COIN} PID: ${!}"
-        
-        echo "${!}" > ${BDIR}/tmp/${CURRENT_COIN}.pid
-    fi
+        logit "Config for ${CURRENT_COIN} is missing!"
+        logit "Skipping coin ${CURRENT_COIN}!"
+    fi  
     
 done
     

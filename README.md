@@ -7,7 +7,7 @@ automatically set max power/speed, and execute/monitor your miner bin on startup
 
 ### MinerBoot Features:
 
-- Self update script
+- Self updating script
 - Update system packages
 - Update NVIDIA packages *
 - Reboot if driver update is detected
