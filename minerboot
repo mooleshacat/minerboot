@@ -29,17 +29,16 @@ if [[ $EUID -ne 0 ]]; then
    exit 1
 fi
 
-BDIR=$(dirname "$0")
+BDIR="$( cd "$(dirname "$0")" ; pwd -P )"
 WDIR=$(pwd)
-echo "BDIR: ${BDIR} WDIR: ${WDIR}"
 
 # Load our functions
-source inc/functions.sh
+source ${BDIR}/inc/functions.sh
 
 logit "MinerBoot v0.1a Started!"
 
 # Run our setup script
-source inc/setup.sh
+source ${BDIR}/inc/setup.sh
 
 logit "MinerBoot v0.1a Finished!"
 
