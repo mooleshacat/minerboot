@@ -20,5 +20,5 @@
 #
 #
 
-MINERCMD="/root/MINERS/suprminer/ccminer -a x16r -o stratum+tcp://us.rvn.minermore.com:4501 -u kthx.BOX -p x --devices=0"
+MINERCMD="/root/MINERS/suprminer/ccminer -a x16r -o stratum+tcp://us.rvn.minermore.com:4501 -u myusername.BOX -p x --devices=0"
 MINERLOG="/root/MINERS/logs/monero.log"
