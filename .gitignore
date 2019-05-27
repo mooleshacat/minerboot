@@ -1,4 +1,12 @@
+
+# Ignore Temporary Files
 *~*
+inc/*~*
+coins/*~*
+
+# Ignore Coin Configs (Except examples)
 coins/*
 !coins/*_example
+
+# Ignore Access Token
 access-token
