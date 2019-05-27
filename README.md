@@ -11,7 +11,7 @@ A boot script for your NVIDIA cryptocurrency miners
 - Enables max GPU power (watts) **
 - Enables max GPU speed (mhz) **
 - Executes the miner bin -- *under development*
-- Monitors the miner bin -- *under development*
+- Monitors & Restarts the miner bin -- *under development*
 - Easy to understand documentation -- *under development*
 
 (*) Only for NVIDIA driver installed using APT package manager<br />

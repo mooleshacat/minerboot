@@ -31,11 +31,11 @@ if [[ $EUID -ne 0 ]]; then
    exit 1
 fi
 
-# Load our functions
-source ${BDIR}/inc/functions.sh
-
 BDIR="$( cd "$(dirname "$0")" ; pwd -P )"
 WDIR=$(pwd)
+
+# Load our functions
+source ${BDIR}/inc/functions.sh
 
 logit "MinerBoot v0.1a Started!"
 
